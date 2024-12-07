@@ -12,7 +12,7 @@
   <main>
     <TheWelcome />
   </main> -->
-	<div id="app" class="container p-4 max-w-[600px] mx-auto">
+	<div id="app" class="">
 		<!-- Header -->
 		<header class="flex justify-between items-center mb-4">
 			<h1 class="text-xl font-bold">UPDATE TITLES</h1>
