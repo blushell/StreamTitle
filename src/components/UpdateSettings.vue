@@ -16,7 +16,7 @@
 		</div>
 
 		<!-- Platform Selection -->
-		<div>
+		<div v-if="mode === 'touchPortal'">
 			<label class="block text-sm font-medium text-gray-300 mb-1"
 				>Platforms</label
 			>
@@ -27,7 +27,7 @@
 							type="checkbox"
 							id="twitch"
 							v-model="platforms.twitch"
-							class="bg-[#1f1f1f] text-blue-500"
+							class="bg-[#1f1f1f]"
 						/>
 						<label for="twitch" class="text-gray-300 ml-2">Twitch</label>
 					</div>
@@ -36,7 +36,7 @@
 							type="checkbox"
 							id="kick"
 							v-model="platforms.kick"
-							class="bg-[#1f1f1f] text-blue-500"
+							class="bg-[#1f1f1f]"
 						/>
 						<label for="kick" class="text-gray-300 ml-2">Kick</label>
 					</div>
@@ -47,7 +47,7 @@
 							type="checkbox"
 							id="youtube"
 							v-model="platforms.youtube"
-							class="bg-[#1f1f1f] text-blue-500"
+							class="bg-[#1f1f1f]"
 						/>
 						<label for="youtube" class="text-gray-300 ml-2">YouTube</label>
 					</div>
@@ -56,7 +56,7 @@
 							type="checkbox"
 							id="youtubeShorts"
 							v-model="platforms.youtubeShorts"
-							class="bg-[#1f1f1f] text-blue-500"
+							class="bg-[#1f1f1f]"
 						/>
 						<label for="youtubeShorts" class="text-gray-300 ml-2"
 							>YouTube Shorts</label
@@ -69,7 +69,7 @@
 							type="checkbox"
 							id="trovo"
 							v-model="platforms.trovo"
-							class="bg-[#1f1f1f] text-blue-500"
+							class="bg-[#1f1f1f]"
 						/>
 						<label for="trovo" class="text-gray-300 ml-2">Trovo</label>
 					</div>
@@ -116,6 +116,31 @@
 			</div>
 		</div>
 
+		<!-- Prompt Type -->
+		<div>
+			<label class="block text-sm font-medium text-gray-300 mb-1"
+				>Prompt Type</label
+			>
+			<select
+				v-model="promptType"
+				class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600 mb-2"
+			>
+				<option disabled selected value="">Select Prompt Type</option>
+				<option value="Happy">Happy</option>
+				<option value="Funny">Funny</option>
+				<option value="Weird">Weird</option>
+				<option value="Custom">Custom</option>
+			</select>
+			<div v-if="promptType === 'Custom'">
+				<input
+					v-model="customPrompt"
+					type="text"
+					placeholder="Enter custom prompt..."
+					class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600 placeholder-gray-400 mt-2"
+				/>
+			</div>
+		</div>
+
 		<!-- Action Buttons -->
 		<div class="flex justify-end space-x-3">
 			<button
@@ -150,6 +175,8 @@ export default {
 				kick: true,
 				trovo: true,
 			},
+			promptType: '',
+			customPrompt: '',
 		};
 	},
 	methods: {
