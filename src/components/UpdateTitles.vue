@@ -31,7 +31,7 @@
 		</button>
 		<button
 			class="ml-2 text-xl flex items-center justify-center"
-			@click="showSettings"
+			@click="$emit('show-settings')"
 		>
 			<i class="fa-solid fa-gear text-gray-400 hover:text-white"></i>
 		</button>

@@ -20,53 +20,59 @@
 			<label class="block text-sm font-medium text-gray-300 mb-1"
 				>Platforms</label
 			>
-			<div class="space-y-2">
-				<div>
-					<input
-						type="checkbox"
-						id="twitch"
-						v-model="platforms.twitch"
-						class="bg-[#1f1f1f] text-blue-500"
-					/>
-					<label for="twitch" class="text-gray-300 ml-2">Twitch</label>
+			<div class="flex flex-wrap gap-4">
+				<div class="space-y-2">
+					<div>
+						<input
+							type="checkbox"
+							id="twitch"
+							v-model="platforms.twitch"
+							class="bg-[#1f1f1f] text-blue-500"
+						/>
+						<label for="twitch" class="text-gray-300 ml-2">Twitch</label>
+					</div>
+					<div>
+						<input
+							type="checkbox"
+							id="kick"
+							v-model="platforms.kick"
+							class="bg-[#1f1f1f] text-blue-500"
+						/>
+						<label for="kick" class="text-gray-300 ml-2">Kick</label>
+					</div>
 				</div>
-				<div>
-					<input
-						type="checkbox"
-						id="youtube"
-						v-model="platforms.youtube"
-						class="bg-[#1f1f1f] text-blue-500"
-					/>
-					<label for="youtube" class="text-gray-300 ml-2">YouTube</label>
+				<div class="space-y-2">
+					<div>
+						<input
+							type="checkbox"
+							id="youtube"
+							v-model="platforms.youtube"
+							class="bg-[#1f1f1f] text-blue-500"
+						/>
+						<label for="youtube" class="text-gray-300 ml-2">YouTube</label>
+					</div>
+					<div>
+						<input
+							type="checkbox"
+							id="youtubeShorts"
+							v-model="platforms.youtubeShorts"
+							class="bg-[#1f1f1f] text-blue-500"
+						/>
+						<label for="youtubeShorts" class="text-gray-300 ml-2"
+							>YouTube Shorts</label
+						>
+					</div>
 				</div>
-				<div>
-					<input
-						type="checkbox"
-						id="youtubeShorts"
-						v-model="platforms.youtubeShorts"
-						class="bg-[#1f1f1f] text-blue-500"
-					/>
-					<label for="youtubeShorts" class="text-gray-300 ml-2"
-						>YouTube Shorts</label
-					>
-				</div>
-				<div>
-					<input
-						type="checkbox"
-						id="kick"
-						v-model="platforms.kick"
-						class="bg-[#1f1f1f] text-blue-500"
-					/>
-					<label for="kick" class="text-gray-300 ml-2">Kick</label>
-				</div>
-				<div>
-					<input
-						type="checkbox"
-						id="trovo"
-						v-model="platforms.trovo"
-						class="bg-[#1f1f1f] text-blue-500"
-					/>
-					<label for="trovo" class="text-gray-300 ml-2">Trovo</label>
+				<div class="space-y-2">
+					<div>
+						<input
+							type="checkbox"
+							id="trovo"
+							v-model="platforms.trovo"
+							class="bg-[#1f1f1f] text-blue-500"
+						/>
+						<label for="trovo" class="text-gray-300 ml-2">Trovo</label>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -130,12 +136,13 @@
 
 <script>
 export default {
+	emits: ['close'],
 	data() {
 		return {
 			mode: '',
 			provider: '',
 			apiKey: '',
-			showPassword: false, // Track password visibility
+			showPassword: false,
 			platforms: {
 				twitch: true,
 				youtube: true,
@@ -150,10 +157,11 @@ export default {
 			this.showPassword = !this.showPassword;
 		},
 		saveSettings() {
-			// Save settings logic
+			// Save settings logic here
+			this.$emit('close');
 		},
 		closeSettings() {
-			// Reset or close settings
+			this.$emit('close');
 		},
 	},
 };
