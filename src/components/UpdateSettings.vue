@@ -7,7 +7,7 @@
 			<label class="block text-sm font-medium text-gray-300 mb-1">Mode</label>
 			<select
 				v-model="mode"
-				class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500/50 transition"
+				class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600"
 			>
 				<option disabled selected value="">Select Mode</option>
 				<option value="touchPortal">Touch Portal</option>
@@ -84,7 +84,7 @@
 			>
 			<select
 				v-model="provider"
-				class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600 focus:border-blue-500 focus:ring focus:ring-blue-500/50 transition"
+				class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600"
 			>
 				<option disabled selected value="">Select Provider</option>
 				<option value="openAPI">OpenAPI</option>
@@ -103,7 +103,7 @@
 					:type="showPassword ? 'text' : 'password'"
 					id="apiKey"
 					placeholder="Enter your API Key"
-					class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600 placeholder-gray-400 focus:border-blue-500 focus:ring focus:ring-blue-500/50 transition"
+					class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600 placeholder-gray-400"
 				/>
 				<button
 					@click="togglePasswordVisibility"
