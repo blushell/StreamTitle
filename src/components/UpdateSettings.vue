@@ -77,21 +77,6 @@
 			</div>
 		</div>
 
-		<!-- API Provider Selector -->
-		<div>
-			<label class="block text-sm font-medium text-gray-300 mb-1"
-				>API Provider</label
-			>
-			<select
-				v-model="provider"
-				class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600"
-			>
-				<option disabled selected value="">Select Provider</option>
-				<option value="openAPI">OpenAPI</option>
-				<option value="openRouter">OpenRouter</option>
-			</select>
-		</div>
-
 		<!-- API Key Input -->
 		<div>
 			<label for="apiKey" class="block text-sm font-medium text-gray-300 mb-1"
@@ -100,20 +85,27 @@
 			<div class="relative">
 				<input
 					v-model="apiKey"
-					:type="showPassword ? 'text' : 'password'"
+					:type="showAPIKey ? 'text' : 'password'"
 					id="apiKey"
 					placeholder="Enter your API Key"
 					class="w-full bg-[#1f1f1f] rounded-md py-2 px-3 border border-gray-600 placeholder-gray-400"
 				/>
 				<button
-					@click="togglePasswordVisibility"
+					@click="toggleAPIKeyVisibility"
 					type="button"
 					class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-300"
 				>
-					<span v-if="showPassword">🙈</span>
+					<span v-if="showAPIKey">🙈</span>
 					<span v-else>👁️</span>
 				</button>
 			</div>
+		</div>
+
+		<!-- Model Selector -->
+		<div>
+			<label class="block text-sm font-medium text-gray-300 mb-1"
+				>Select Model</label
+			>
 		</div>
 
 		<!-- Prompt Type -->
@@ -159,37 +151,37 @@
 	</div>
 </template>
 
-<script>
-export default {
-	emits: ['close'],
-	data() {
-		return {
-			mode: '',
-			provider: '',
-			apiKey: '',
-			showPassword: false,
-			platforms: {
-				twitch: true,
-				youtube: true,
-				youtubeShorts: true,
-				kick: true,
-				trovo: true,
-			},
-			promptType: '',
-			customPrompt: '',
-		};
-	},
-	methods: {
-		togglePasswordVisibility() {
-			this.showPassword = !this.showPassword;
-		},
-		saveSettings() {
-			// Save settings logic here
-			this.$emit('close');
-		},
-		closeSettings() {
-			this.$emit('close');
-		},
-	},
+<script setup>
+import { ref } from 'vue';
+
+// Emit event
+const emit = defineEmits(['close']);
+
+// Reactive state
+const mode = ref('');
+const apiKey = ref('');
+const showAPIKey = ref(false);
+const promptType = ref('');
+const customPrompt = ref('');
+const platforms = ref({
+	twitch: true,
+	youtube: true,
+	youtubeShorts: true,
+	kick: true,
+	trovo: true,
+});
+
+// Methods
+const toggleAPIKeyVisibility = () => {
+	showAPIKey.value = !showAPIKey.value;
+};
+
+const saveSettings = () => {
+	// Save settings logic here
+	emit('close');
+};
+
+const closeSettings = () => {
+	emit('close');
 };
 </script>
