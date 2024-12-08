@@ -4,5 +4,12 @@ export default {
 	theme: {
 		extend: {},
 	},
-	plugins: [],
+	/* 	plugins: [require('daisyui')],
+	daisyui: {
+		themes: false,
+		base: false,
+		styled: true,
+		utils: true,
+		themes: ['dark'],
+	}, */
 };
