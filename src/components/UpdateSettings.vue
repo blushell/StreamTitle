@@ -171,6 +171,28 @@ const platforms = ref({
 	trovo: true,
 });
 
+// Load settings from local storage
+const loadSettings = () => {
+	const savedSettings = localStorage.getItem('settings');
+	if (savedSettings) {
+		const settings = JSON.parse(savedSettings);
+		mode.value = settings.mode || '';
+		apiKey.value = settings.apiKey || '';
+		promptType.value = settings.promptType || '';
+		customPrompt.value = settings.customPrompt || '';
+		platforms.value = settings.platforms || {
+			twitch: true,
+			youtube: true,
+			youtubeShorts: true,
+			kick: true,
+			trovo: true,
+		};
+	}
+};
+
+// Call loadSettings on component mount
+loadSettings();
+
 // Methods
 const toggleAPIKeyVisibility = () => {
 	showAPIKey.value = !showAPIKey.value;
@@ -178,6 +200,16 @@ const toggleAPIKeyVisibility = () => {
 
 const saveSettings = () => {
 	// Save settings logic here
+	localStorage.setItem(
+		'settings',
+		JSON.stringify({
+			mode: mode.value,
+			apiKey: apiKey.value,
+			promptType: promptType.value,
+			customPrompt: customPrompt.value,
+			platforms: platforms.value,
+		})
+	);
 	emit('close');
 };
 
