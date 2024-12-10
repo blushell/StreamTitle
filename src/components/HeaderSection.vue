@@ -5,14 +5,15 @@
 			<a href="https://example.com" target="_blank">
 				<i class="fa-solid fa-circle-info text-gray-400 hover:text-white"></i>
 			</a>
-			<i
+			<i class="fa-solid fa-wifi-exclamation text-red-500"></i>
+			<!-- <i
 				:class="[
 					'fa-solid',
 					isConnected
 						? 'fa-wifi text-green-500'
 						: 'fa-wifi-exclamation text-red-500',
 				]"
-			></i>
+			></i> -->
 		</div>
 	</header>
 </template>
