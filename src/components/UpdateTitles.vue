@@ -26,12 +26,13 @@
 		</button>
 		<button
 			class="px-4 py-2 rounded-full ml-auto bg-green-600 hover:bg-green-500"
+			@click="handleGenerate"
 		>
 			GENERATE
 		</button>
 		<button
 			class="ml-2 text-xl flex items-center justify-center"
-			@click="$emit('show-settings')"
+			@click="handleSettingsClick"
 		>
 			<i class="fa-solid fa-gear text-gray-400 hover:text-white"></i>
 		</button>
@@ -69,4 +70,25 @@
 
 <script setup>
 import HeaderSection from './HeaderSection.vue';
+import { ref } from 'vue';
+import { generateTitle } from '../utils/titleGenerator';
+import { useSettingsStore } from '../stores/settingsStore';
+
+const settingsStore = useSettingsStore();
+const globalTitle = ref('');
+const platforms = ref([]);
+
+// Add click handler to generate button
+const handleGenerate = async () => {
+	try {
+		globalTitle.value = await generateTitle();
+	} catch (error) {
+		alert(error.message);
+	}
+};
+
+// Replace emit with store method
+const handleSettingsClick = () => {
+	settingsStore.openSettings();
+};
 </script>
